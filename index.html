@@ -116,7 +116,7 @@
       display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); place-items: center;
       gap: clamp(36px, 8vw, 150px); padding: 40px;
     }
-    .gallery-placeholder { display: grid; place-items: center; width: 100%; aspect-ratio: var(--aspect); border-radius: 12px; background: #303130; color: #d1d1cc; font: 400 clamp(11px, .9vw, 15px)/1.2 "SF Mono", monospace; }
+    .work-stage img { display: block; max-width: 100%; height: auto; border-radius: 12px; }
     .work-gallery.is-scrolling {
       height: 357vh; height: 357svh;
       margin-block: -12vh -18vh; margin-block: -12svh -18svh;
@@ -125,13 +125,13 @@
       display: block; position: sticky; top: 0; height: 100vh; height: 100svh;
       overflow: hidden; padding: 0;
     }
-    .is-scrolling .gallery-placeholder {
-      position: absolute; left: 50%; top: 50%; width: min(32vw, calc(45svh * var(--aspect)));
-      visibility: hidden; transform-origin: center;
+    .is-scrolling .work-stage img {
+      position: absolute; left: 50%; top: 50%; width: auto; height: auto;
+      max-width: 32%; max-height: 45%; visibility: hidden; transform-origin: center;
     }
     @media (max-width: 640px) {
       .work-stage { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 20px; }
-      .is-scrolling .gallery-placeholder { width: min(55vw, calc(39svh * var(--aspect))); }
+      .is-scrolling .work-stage img { max-width: 55%; max-height: 39%; }
     }
     .course-hero {
       min-height: calc(100vh + 50px); min-height: calc(100dvh + 50px);
@@ -228,7 +228,7 @@
     .story-copy { container-type: inline-size; background: #1a1a1a; }
     .story-content {
       height: 100%; box-sizing: border-box; padding: 7.35cqw; display: flex; flex-direction: column;
-      align-items: flex-start; gap: 7cqw;
+      align-items: flex-start; gap: 8.6cqw;
     }
     .story-person { display: flex; align-items: center; gap: 3.7cqw; }
     .story-avatar { position: relative; overflow: hidden; width: 16.55cqw; aspect-ratio: 1; border-radius: 5.5cqw; }
@@ -238,7 +238,10 @@
     .story-person h3 { margin: 0 0 2px; font: 500 max(12px, 4.62cqw)/1.15 "PA Hero Display", Arial, sans-serif; }
     .story-person small { color: #a09f9a; font: 400 max(11px, 4cqw)/1.2 Arial, sans-serif; }
     .story-excerpt { margin: 0; font-size: 7cqw; line-height: 1.1; letter-spacing: -.035em; }
-    .story-read { margin-top: auto; }
+    .story-read {
+      margin-top: auto; padding: 0; border: 0; color: inherit; background: none; cursor: pointer;
+      text-decoration: underline; text-underline-offset: 2px; font: inherit; font-size: max(12px, 4.42cqw);
+    }
     .story-read:focus-visible, .story-dialog button:focus-visible { outline: 2px solid #ff7122; outline-offset: 4px; }
     .story-dialog {
       box-sizing: border-box; width: min(520px, calc(100% - 32px)); max-height: 80vh; padding: 32px;
@@ -247,6 +250,7 @@
     .story-dialog::backdrop { background: #000b; }
     .story-dialog h3 { margin: 0 0 20px; font: 500 32px/1.1 "PA Hero Display", Arial, sans-serif; }
     .story-dialog p { font: 400 18px/1.45 Arial, sans-serif; }
+    .story-dialog button { padding: 10px 18px; border: 0; border-radius: 6px; color: #181818; background: #fff; cursor: pointer; }
     html:has(.story-dialog[open]) { overflow: hidden; }
     .student-stories.is-scrolling .stories-stage {
       position: sticky; top: 0; height: 100vh; height: 100dvh; overflow: clip; padding: 0;
@@ -539,7 +543,11 @@
 }
 .application-field input:focus { outline: 0; border-color: currentColor; box-shadow: 0 1px currentColor; }
 .application-send { margin-top: clamp(20px, 3.5vh, 42px); }
-.application-send button { width: 100%; }
+.application-send button {
+  width: 100%; min-height: clamp(72px, 6vw, 100px); padding: 20px;
+  border: 0; border-radius: 0; background: #fff; color: #111; cursor: pointer;
+  font: 400 clamp(12px, .95vw, 16px)/1.25 "SF Mono", monospace; text-transform: uppercase;
+}
 
 .application-send :focus-visible, .faq-list summary:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
 @media (max-width: 640px) {
@@ -671,8 +679,8 @@
 }
 
   </style>
-  <link rel="stylesheet" href="course-sections.css?v=preview-5">
-  <script src="course-sections.js?v=preview-5" defer></script>
+  <link rel="stylesheet" href="course-sections.css?v=preview-6">
+  <script src="course-sections.js?v=preview-6" defer></script>
 </head>
 <body id="top">
   <div class="launch-screen">
@@ -1098,12 +1106,12 @@
     </div>
     <section class="work-gallery" id="works" aria-label="Галерея проектов">
       <div class="work-stage">
-        <span class="gallery-placeholder" style="--aspect: 1.339">Фотография</span>
-        <span class="gallery-placeholder" style="--aspect: 0.747">Предметная съёмка</span>
-        <span class="gallery-placeholder" style="--aspect: 0.800">3D</span>
-        <span class="gallery-placeholder" style="--aspect: 1.784">Интерьер</span>
-        <span class="gallery-placeholder" style="--aspect: 1.791">Арт-дирекшн</span>
-        <span class="gallery-placeholder" style="--aspect: 1.491">Анимация</span>
+        <img src="gallery/portrait.webp" width="960" height="717" alt="Фотосессия в оранжерее">
+        <img src="gallery/still-life.webp" width="717" height="960" alt="Предметная съёмка с сыром и артишоком">
+        <img src="gallery/mascot.webp" width="768" height="960" alt="Оранжевый 3D-персонаж">
+        <img src="gallery/restaurant.webp" width="960" height="538" alt="Кухня ресторана в движении">
+        <img src="gallery/concept.webp" width="960" height="536" alt="Ткань и деревянные прищепки на ветке">
+        <img src="gallery/animation.webp" width="960" height="644" alt="Красный персонаж среди японских ворот">
       </div>
     </section>
     <section class="companies" aria-labelledby="companies-title">
@@ -1215,18 +1223,18 @@
       <div class="pa-showcase"><div class="pa-showcase-pin">
         <div class="pa-folio"><p>Портфолио</p></div>
         <div class="pa-montage" aria-hidden="true">
-          <span>Веб-дизайн</span>
-          <span>Айдентика</span>
-          <span>UX/UI</span>
-          <span>Моушн</span>
-          <span>Плакат</span>
-          <span>3D</span>
-          <span>Лонгрид</span>
-          <span>Типографика</span>
-          <span>Брендинг</span>
-          <span>Интерфейс</span>
-          <span>AI-видео</span>
-          <span>Упаковка</span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
         <h2 class="pa-display" id="work-title"><span class="reveal-row"><span>Лучшие работы</span></span> <span class="reveal-row"><span>выпускников</span></span></h2>
       </div></div>
@@ -1234,11 +1242,11 @@
         <header class="pa-folio"><p>Проекты школы</p><div class="pa-outlets"><a href="https://dprofile.ru/perasperadastra">Dprofile ↗</a><a href="https://www.behance.net/perasperadastra">Behance ↗</a></div></header>
         <div class="pa-work-grid">
           <figure class="pa-reel"><img src="project-placeholder.svg" alt="" loading="lazy"><figcaption><strong>Boréal</strong><span>Мария Тетерина</span></figcaption></figure>
-          <div class="pa-case-index"><a class="pa-case pa-case-lumos" href="https://dprofile.ru/case/174106/lumos"><img src="project-placeholder.svg" alt="" loading="lazy" width="1233" height="1000"><div><strong>LUMOS ↗</strong><span>AI-концепт · Мария Тетерина</span></div></a>
-            <a class="pa-case pa-case-snow" href="https://dprofile.ru/case/197117/tancy-na-snegu-koncept-klipa-bez-kamery-i-akterov"><img src="project-placeholder.svg" alt="" loading="lazy" width="740" height="600"><div><strong>Танцы на снегу ↗</strong><span>Motion и AI · Студия школы</span></div></a>
-            <a class="pa-case pa-case-odin" href="https://dprofile.ru/case/198180/longrid-ob-odine-i-istinnoi-cene-mudrosti"><img src="project-placeholder.svg" alt="" loading="lazy" width="740" height="600"><div><strong>Лонгрид об Одине ↗</strong><span>Графика · Надежда Соломонова</span></div></a>
-            <a class="pa-case pa-case-boreal" href="https://dprofile.ru/case/174167/boreal"><img src="project-placeholder.svg" alt="" loading="lazy" width="1233" height="1000"><div><strong>Boréal ↗</strong><span>Нейросъёмка · Мария Тетерина</span></div></a>
-            <a class="pa-case pa-case-halo" href="https://dprofile.ru/case/199346/halo-pet-service-web-design-uiux-design-system"><img src="project-placeholder.svg" alt="" loading="lazy" width="740" height="600"><div><strong>HALO ↗</strong><span>Веб и UX/UI · Никита Шаронов</span></div></a></div>
+          <div class="pa-case-index"><a class="pa-case pa-case-lumos" href="https://dprofile.ru/case/174106/lumos"><img src="project-placeholder.svg" alt="" loading="lazy" width="1233" height="1000"><div><strong>LUMOS</strong><span>AI-концепт · Мария Тетерина</span></div></a>
+            <a class="pa-case pa-case-snow" href="https://dprofile.ru/case/197117/tancy-na-snegu-koncept-klipa-bez-kamery-i-akterov"><img src="project-placeholder.svg" alt="" loading="lazy" width="740" height="600"><div><strong>Танцы на снегу</strong><span>Motion и AI · Студия школы</span></div></a>
+            <a class="pa-case pa-case-odin" href="https://dprofile.ru/case/198180/longrid-ob-odine-i-istinnoi-cene-mudrosti"><img src="project-placeholder.svg" alt="" loading="lazy" width="740" height="600"><div><strong>Лонгрид об Одине</strong><span>Графика · Надежда Соломонова</span></div></a>
+            <a class="pa-case pa-case-boreal" href="https://dprofile.ru/case/174167/boreal"><img src="project-placeholder.svg" alt="" loading="lazy" width="1233" height="1000"><div><strong>Boréal</strong><span>Нейросъёмка · Мария Тетерина</span></div></a>
+            <a class="pa-case pa-case-halo" href="https://dprofile.ru/case/199346/halo-pet-service-web-design-uiux-design-system"><img src="project-placeholder.svg" alt="" loading="lazy" width="740" height="600"><div><strong>HALO</strong><span>Веб и UX/UI · Никита Шаронов</span></div></a></div>
         </div>
       </div>
     </section>
@@ -1276,7 +1284,7 @@
                   <div><h3 id="story-kononov">Степан Кононов</h3><small>Сбер → Яндекс</small></div>
                 </div>
                 <p class="story-excerpt">Я несколько лет был в продажах: банки, лизинг. Но в какой-то момент осознал, что хочу заниматься чем-то более творческим.</p>
-                <button class="story-read pa-cut-button" type="button" aria-haspopup="dialog" aria-controls="read-kononov" aria-label="Читать историю: Степан Кононов">Читать историю</button>
+                <button class="story-read" type="button" aria-haspopup="dialog" aria-controls="read-kononov" aria-label="Читать историю: Степан Кононов">Читать историю</button>
               </div>
             </div>
           </article>
@@ -1289,7 +1297,7 @@
                   <div><h3 id="story-uvarova">Алина Уварова</h3><small>Национальные проекты России</small></div>
                 </div>
                 <p class="story-excerpt">После публикации учебного кейса Алине пришли два заказа. Один из проектов она доработала вместе со школой для реального клиента.</p>
-                <button class="story-read pa-cut-button" type="button" aria-haspopup="dialog" aria-controls="read-uvarova" aria-label="Читать историю: Алина Уварова">Читать историю</button>
+                <button class="story-read" type="button" aria-haspopup="dialog" aria-controls="read-uvarova" aria-label="Читать историю: Алина Уварова">Читать историю</button>
               </div>
             </div>
           </article>
@@ -1302,7 +1310,7 @@
                   <div><h3 id="story-baskakov">Никита Баскаков</h3><small>Веб-дизайн</small></div>
                 </div>
                 <p class="story-excerpt">На дизайн-баттле Никита переделал сайт музея динозавров. Потом вместе со школой работал над интернет-магазином для клиента.</p>
-                <button class="story-read pa-cut-button" type="button" aria-haspopup="dialog" aria-controls="read-baskakov" aria-label="Читать историю: Никита Баскаков">Читать историю</button>
+                <button class="story-read" type="button" aria-haspopup="dialog" aria-controls="read-baskakov" aria-label="Читать историю: Никита Баскаков">Читать историю</button>
               </div>
             </div>
           </article>
@@ -1315,7 +1323,7 @@
                   <div><h3 id="story-galimova">Арина Галимова</h3><small>Студия HAVE</small></div>
                 </div>
                 <p class="story-excerpt">Арина собиралась развиваться в UX/UI, но на курсе увлеклась брендингом. После собеседования её взяли графическим дизайнером в студию HAVE.</p>
-                <button class="story-read pa-cut-button" type="button" aria-haspopup="dialog" aria-controls="read-galimova" aria-label="Читать историю: Арина Галимова">Читать историю</button>
+                <button class="story-read" type="button" aria-haspopup="dialog" aria-controls="read-galimova" aria-label="Читать историю: Арина Галимова">Читать историю</button>
               </div>
             </div>
           </article>
@@ -1324,22 +1332,22 @@
       <dialog class="story-dialog" id="read-kononov" aria-labelledby="read-kononov-title">
         <h3 id="read-kononov-title">Степан Кононов</h3>
         <p>Первый коммерческий заказ Степан получил ещё во время курса: спроектировал лендинг студии видеомонтажа Timecode и сверстал его на Tilda.</p><p>Затем вместе со школой он работал над сервисом Curious. Для поиска работы собрал в портфолио и учебные, и клиентские проекты.</p>
-        <form method="dialog"><button class="pa-cut-button">Закрыть</button></form>
+        <form method="dialog"><button>Закрыть</button></form>
       </dialog>
       <dialog class="story-dialog" id="read-uvarova" aria-labelledby="read-uvarova-title">
         <h3 id="read-uvarova-title">Алина Уварова</h3>
         <p>Алина следила за работами выпускников и хотела стать частью дизайнерского сообщества. После курса она поработала над проектом для Шерегеша.</p><p>Кейсы из портфолио помогли пройти собеседование. Через два месяца после курса Алина устроилась дизайнером в «Национальные проекты России».</p>
-        <form method="dialog"><button class="pa-cut-button">Закрыть</button></form>
+        <form method="dialog"><button>Закрыть</button></form>
       </dialog>
       <dialog class="story-dialog" id="read-baskakov" aria-labelledby="read-baskakov-title">
         <h3 id="read-baskakov-title">Никита Баскаков</h3>
         <p>Никита хотел развить креативное мышление и находить собственные решения для клиентов. На баттле школы он делал редизайн сайта музея в условиях ограниченного времени.</p><p>Команда школы пригласила его поработать над интернет-магазином. На этом двухмесячном проекте Никита получил опыт коммерческой разработки.</p>
-        <form method="dialog"><button class="pa-cut-button">Закрыть</button></form>
+        <form method="dialog"><button>Закрыть</button></form>
       </dialog>
       <dialog class="story-dialog" id="read-galimova" aria-labelledby="read-galimova-title">
         <h3 id="read-galimova-title">Арина Галимова</h3>
         <p>До курса Арина делала логотипы, сайты и оформление университетских мероприятий. У неё уже были заказчики, а в школе она хотела выстроить свой подход к работе.</p><p>В студии ей пригодился опыт с айдентикой, метафорами и структурой проекта. Из разных направлений дизайна она выбрала брендинг.</p>
-        <form method="dialog"><button class="pa-cut-button">Закрыть</button></form>
+        <form method="dialog"><button>Закрыть</button></form>
       </dialog>
     </section>
     <section id="about" class="pa-section pa-about" aria-labelledby="about-heading">
@@ -1395,7 +1403,7 @@
         <div class="pa-columns" aria-hidden="true"><i style="--height:42%"></i><i style="--height:67%"></i><i style="--height:88%"></i><i style="--height:98%"></i><i style="--height:72%"></i><i style="--height:51%"></i><i style="--height:51%"></i><i style="--height:72%"></i><i style="--height:98%"></i><i style="--height:88%"></i><i style="--height:67%"></i><i style="--height:42%"></i></div>
         <h2 class="pa-display" id="program-heading"><span class="reveal-row"><span>Чему научишься</span></span> <span class="reveal-row"><span>и что будет</span></span> <span class="reveal-row"><span>в портфолио</span></span></h2>
       </div></div>
-      <div class="pa-program-book"><div class="pa-tabs" aria-label="Направления программы"><a class="pa-cut-button" href="#program-digital">Digital</a><a class="pa-cut-button" href="#program-motion">Motion</a><a class="pa-cut-button" href="#program-ai">AI</a></div>
+      <div class="pa-program-book"><div class="pa-tabs" aria-label="Направления программы"><a href="#program-digital">Digital</a><a href="#program-motion">Motion</a><a href="#program-ai">AI</a></div>
       <div class="pa-program-panel" id="program-digital"><h3>Digital-дизайнер</h3><ol>
         <li><strong>Mission to Web</strong><span>Лендинг, лонгрид, корпоративный сайт и адаптив</span><b>3–4 сайта</b></li>
         <li><strong>Mission to UX/UI</strong><span>8 модулей, от исследования до прототипа</span><b>Кейс приложения</b></li>
@@ -1406,7 +1414,7 @@
         <li><strong>Идея и сценарий</strong><span>Разбор брифа и поиск визуального решения</span><b>Раскадровка</b></li>
         <li><strong>Движение</strong><span>Тайминг, ритм и переходы между сценами</span><b>Аниматик</b></li>
         <li><strong>Монтаж и звук</strong><span>Сборка эпизодов в цельную историю</span><b>Ролик для бренда</b></li>
-      </ol><figure class="pa-module-cover"><img src="project-placeholder.svg" alt="" loading="lazy"><figcaption>Танцы на снегу · Motion</figcaption></figure><a class="pa-text-link pa-cut-button primary" href="https://perasperadastra.ru/mission-to-motion">Вся программа Mission to Motion ↗</a></div>
+      </ol><figure class="pa-module-cover"><img src="project-placeholder.svg" alt="" loading="lazy"></figure><a class="pa-text-link pa-cut-button primary" href="https://perasperadastra.ru/mission-to-motion">Вся программа Mission to Motion ↗</a></div>
       <div class="pa-program-panel" id="program-ai"><h3>Mission to AI</h3><ol>
         <li><strong>Арт-дирекшн</strong><span>Референсы, свет и постановка задачи</span><b>Концепция съёмки</b></li>
         <li><strong>Генерация кадров</strong><span>Работа с героем, продуктом и стилем</span><b>Серия изображений</b></li>
@@ -1418,9 +1426,9 @@
       <div class="pa-event-stage">
         <h2 class="pa-display" id="community-heading"><span class="reveal-row"><span>Живое сообщество</span></span></h2>
         <div class="pa-events">
-          <a href="https://t.me/perasperagram/1600"><img src="editorial/polytech.webp" alt="Выступление на сцене перед слушателями дизайн-лектория" width="800" height="438" loading="lazy"><strong>Московский Политех ↗</strong><span>Лекторий · Москва</span></a>
-          <a href="https://t.me/perasperagram/2115"><img src="editorial/itmo.webp" alt="Участники петербургского лектория вместе после выступлений" width="800" height="599" loading="lazy"><strong>Встреча в ИТМО ↗</strong><span>Лекторий · Санкт-Петербург</span></a>
-          <a href="https://t.me/perasperagram/2123"><img src="project-placeholder.svg" alt="" width="564" height="800" loading="lazy"><strong>Дизайн-батл ↗</strong><span>Плакат · Онлайн</span></a>
+          <a href="https://t.me/perasperagram/1600"><img src="editorial/polytech.webp" alt="Выступление на сцене перед слушателями дизайн-лектория" width="800" height="438" loading="lazy"><div class="pa-event-caption"><strong>Московский Политех</strong><span>Лекторий · Москва</span></div></a>
+          <a href="https://t.me/perasperagram/2115"><img src="editorial/itmo.webp" alt="Участники петербургского лектория вместе после выступлений" width="800" height="599" loading="lazy"><div class="pa-event-caption"><strong>Встреча в ИТМО</strong><span>Лекторий · Санкт-Петербург</span></div></a>
+          <a href="https://t.me/perasperagram/2123"><img src="project-placeholder.svg" alt="" width="564" height="800" loading="lazy"><div class="pa-event-caption"><strong>Дизайн-батл</strong><span>Плакат · Онлайн</span></div></a>
         </div>
       </div>
     </section>
@@ -1453,13 +1461,10 @@
       <div class="pa-filters" aria-label="Фильтр материалов" hidden><button class="pa-cut-button" type="button" data-filter="all" aria-pressed="true">Все</button><button class="pa-cut-button" type="button" data-filter="battle" aria-pressed="false">Батлы</button><button class="pa-cut-button" type="button" data-filter="breakdown" aria-pressed="false">Разборы</button><button class="pa-cut-button" type="button" data-filter="case" aria-pressed="false">Кейсы</button><button class="pa-cut-button" type="button" data-filter="lecture" aria-pressed="false">Лекции</button></div>
       <div class="pa-news-desk">
         <div class="pa-news-preview" aria-hidden="true">
-          <span data-kind="battle" hidden>Батл</span>
-          <span data-kind="breakdown">Разбор</span>
-          <span data-kind="case" hidden>Кейс</span>
-          <span data-kind="lecture" hidden>Лекция</span>
-        </div>
-        <div class="pa-viewer-caption">
-          <a class="pa-current-post" href="https://perasperadastra.ru/klip">Как снять клип без камеры и актёров ↗</a>
+          <span data-kind="battle" hidden></span>
+          <span data-kind="breakdown"></span>
+          <span data-kind="case" hidden></span>
+          <span data-kind="lecture" hidden></span>
         </div>
         <div class="pa-media-list"><a data-kind="battle" href="https://t.me/perasperagram/2123"><span>Батл</span><strong>Один бриф, два плаката ко Дню агронома</strong><i>↗</i></a>
           <a data-kind="breakdown" href="https://perasperadastra.ru/klip"><span>Разбор</span><strong>Как снять клип без камеры и актёров</strong><i>↗</i></a>
@@ -1482,7 +1487,7 @@
             <label class="application-field"><span>Какое направление интересно</span><input type="text" name="direction" maxlength="200" placeholder=" "></label>
           </div>
           <div class="application-send">
-            <button type="submit" class="pa-cut-button">Оставить заявку <span aria-hidden="true">↗</span></button>
+            <button type="submit">Оставить заявку</button>
           </div>
         </div>
       </form>
@@ -1679,7 +1684,7 @@ function cardEdgeWarp(center, viewport, cardWidth) {
 
 function startWorkGallery(gallery) {
   const stage = gallery.querySelector('.work-stage');
-  const cards = Array.from(stage.querySelectorAll('.gallery-placeholder'));
+  const cards = Array.from(stage.querySelectorAll('img'));
   const motion = reducedMotionPreference;
   let cardWidths = [];
   let centers = [];
@@ -1921,7 +1926,8 @@ if (window.IntersectionObserver) {
       observer.observe(element);
     }
   }
-  observeReveals('main [data-text-reveal]:not([data-on-load]), #school-footer [data-text-reveal]', 'reveal-ready', .48, '0px 0px -16px');
+  observeReveals('#courses-title', 'reveal-ready', .12, '0px');
+  observeReveals('main [data-text-reveal]:not([data-on-load], #courses-title), #school-footer [data-text-reveal]', 'reveal-ready', .48, '0px 0px -16px');
   observeReveals('.companies [data-text-reveal]', 'reveal-ready', .65, '0px 0px -48px');
   observeReveals('#school-footer .mtb-star', 'mtb-reveal', .55, '0px');
 }

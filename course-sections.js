@@ -57,12 +57,9 @@
 
   const preview = document.querySelector('.pa-news-preview');
   const previewItems = [...preview.children];
-  const currentPost = document.querySelector('.pa-current-post');
   function previewPost(post) {
     if (!post) return;
     previewItems.forEach(item => { item.hidden = item.dataset.kind !== post.dataset.kind; });
-    currentPost.href = post.href;
-    currentPost.textContent = post.querySelector('strong').textContent + ' ↗';
   }
   posts.forEach(post => {
     post.addEventListener('pointerenter', () => previewPost(post));
@@ -84,6 +81,12 @@
   const covers = [...showcase.querySelector('.pa-montage').children];
   const program = document.querySelector('.pa-program-scene');
   const columns = [...program.querySelector('.pa-columns').children];
+  // Pick the order once so reversing the scroll retraces the same movement.
+  const columnDelays = columns.map((_, i) => .04 + .32 * i / (columns.length - 1));
+  for (let i = columnDelays.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [columnDelays[i], columnDelays[j]] = [columnDelays[j], columnDelays[i]];
+  }
   const events = [...document.querySelector('.pa-events').children];
   const awardLinks = [...document.querySelector('.pa-award-links').children];
   const canStack = matchMedia('(min-width:761px) and (min-height:580px)');
@@ -145,14 +148,14 @@
     const progress = sceneProgress(program.getBoundingClientRect(), program.firstElementChild.clientHeight);
     return () => {
       columns.forEach((col, i) => {
-        const delay = .04 + Math.abs(i - (columns.length - 1) / 2) * .032;
-        prop(col, '--column-y', 101 * (1 - ramp(progress, delay, .72 + delay)), '%');
+        const delay = columnDelays[i];
+        prop(col, '--column-y', 101 * (1 - ramp(progress, delay, .59 + delay)), '%');
       });
     };
   });
   awardLinks.forEach((link, i) => scenes.set(link, height => {
     const rect = link.getBoundingClientRect();
-    const progress = (height - rect.top) / Math.max(1, height * .48);
+    const progress = (.78 * height - rect.top) / Math.max(1, height * .48);
     const delay = (i % 4) * .045;
     return () => prop(link, '--award-fill', ramp(progress, delay, .82 + delay));
   }));
