@@ -71,12 +71,21 @@
 
   const deck = document.querySelector('.pa-deck-pages');
   const sheets = [...deck.children];
+  const courses = deck.closest('.pa-deck');
+  function measureDeck() {
+    const top = Math.min(0, window.innerHeight - courses.offsetHeight);
+    courses.style.setProperty('--deck-pin-top', top + 'px');
+  }
+  new ResizeObserver(measureDeck).observe(courses);
+  window.addEventListener('resize', measureDeck);
+  measureDeck();
   const sentence = document.querySelector('.pa-sentence');
   const showcase = document.querySelector('.pa-showcase');
   const covers = [...showcase.querySelector('.pa-montage').children];
   const program = document.querySelector('.pa-program-scene');
   const columns = [...program.querySelector('.pa-columns').children];
   const events = [...document.querySelector('.pa-events').children];
+  const awardLinks = [...document.querySelector('.pa-award-links').children];
   const canStack = matchMedia('(min-width:761px) and (min-height:580px)');
   const clamp = value => Math.max(0, Math.min(1, value));
   function ramp(value, start, end) {
@@ -116,13 +125,13 @@
     const progress = sceneProgress(showcase.getBoundingClientRect(), pin.clientHeight);
     const centres = covers.map(img => [img.offsetLeft - pin.clientWidth / 2, img.offsetTop - pin.clientHeight / 2]);
     return () => {
-      const title = 1 - ramp(progress, .015, .22) + ramp(progress, .77, .98);
+      const title = 1 - ramp(progress, .015, .22) + ramp(progress, .84, 1);
       prop(pin, '--title-alpha', title);
       prop(pin, '--title-y', (1 - title) * (progress < .5 ? -24 : 36), 'px');
       covers.forEach((img, i) => {
         const phase = ((i * 5) % covers.length) / covers.length;
-        const enter = ramp(progress, phase * .12, .28 + phase * .10);
-        const exit = ramp(progress, .55 + phase * .12, .79 + phase * .15);
+        const enter = ramp(progress, phase * .10, .28 + phase * .06);
+        const exit = ramp(progress, .66 + phase * .07, .89 + phase * .09);
         const spread = enter * (1 - exit);
         const [x, y] = centres[i];
         prop(img, '--image-x', -x * (1 - spread), 'px');
@@ -136,11 +145,17 @@
     const progress = sceneProgress(program.getBoundingClientRect(), program.firstElementChild.clientHeight);
     return () => {
       columns.forEach((col, i) => {
-        const delay = Math.abs(i - (columns.length - 1) / 2) * .041;
-        prop(col, '--fill', .025 + .975 * ramp(progress, delay, .64 + delay));
+        const delay = .04 + Math.abs(i - (columns.length - 1) / 2) * .032;
+        prop(col, '--column-y', 101 * (1 - ramp(progress, delay, .72 + delay)), '%');
       });
     };
   });
+  awardLinks.forEach((link, i) => scenes.set(link, height => {
+    const rect = link.getBoundingClientRect();
+    const progress = (height - rect.top) / Math.max(1, height * .48);
+    const delay = (i % 4) * .045;
+    return () => prop(link, '--award-fill', ramp(progress, delay, .82 + delay));
+  }));
   events.forEach((event, i) => scenes.set(event, height => {
     const rect = event.getBoundingClientRect();
     const t = clamp((height - rect.top) / (height + rect.height));
