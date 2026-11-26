@@ -6,9 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Perasperadastra — курсы</title>
   <script>
-    // Show the choreography in the local design preview. Use ?motion=system to review the accessible layout.
-    const localPreview = location.protocol === 'file:' || ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
-    const previewMotion = localPreview && new URLSearchParams(location.search).get('motion') !== 'system';
+    // This review build previews the choreography. ?motion=system follows the viewer's OS preference.
+    const previewMotion = new URLSearchParams(location.search).get('motion') !== 'system';
     const reducedMotionPreference = matchMedia(previewMotion ? 'not all' : '(prefers-reduced-motion: reduce)');
     document.documentElement.classList.toggle('motion-preview', previewMotion);
     const launchScreenEnabled = false;
@@ -689,8 +688,8 @@
 }
 
   </style>
-  <link rel="stylesheet" href="course-sections.css?v=ref-scenes-3">
-  <script src="course-sections.js?v=ref-scenes-3" defer></script>
+  <link rel="stylesheet" href="course-sections.css?v=preview-4">
+  <script src="course-sections.js?v=preview-4" defer></script>
 </head>
 <body id="top">
   <div class="launch-screen">
@@ -1069,11 +1068,10 @@
     </svg>
   <div class="course-intro">
     <div class="course-hero">
-      <div class="pa-signal pa-signal-hero" aria-hidden="true"><span>Frame <b data-viewport>—</b></span><span>Space / RGB</span></div>
   <header class="site-header">
     <a class="brand-mark" href="#top" aria-label="Perasperadastra — на главную"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzYyNDdfMTQ1NykiPgo8cmVjdCB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHJ4PSI2IiBmaWxsPSJibGFjayIvPgo8Y2lyY2xlIGN4PSI2LjQ5OTYxIiBjeT0iMzMuOSIgcj0iMy45IiBmaWxsPSIjNDQ0MTQxIi8+CjxjaXJjbGUgY3g9IjAuNDAxOTUzIiBjeT0iMjkuOTk5OCIgcj0iNC40IiBmaWxsPSIjNDQ0MTQxIi8+CjxjaXJjbGUgY3g9IjEzLjMwMSIgY3k9IjMzLjUiIHI9IjQuMyIgZmlsbD0iIzQ0NDE0MSIvPgo8Y2lyY2xlIGN4PSIxOS44MjMzIiBjeT0iNDQuMjAyIiByPSIzLjkiIGZpbGw9IiM0NDQxNDEiLz4KPGNpcmNsZSBjeD0iMTYuNjEwNSIgY3k9IjM4LjYwODYiIHI9IjQuNCIgZmlsbD0iIzQ0NDE0MSIvPgo8Y2lyY2xlIGN4PSIyMy43NDQ1IiBjeT0iNDkuNzQ2OCIgcj0iNC4zIiBmaWxsPSIjNDQ0MTQxIi8+CjxjaXJjbGUgY3g9IjE3LjQwMSIgY3k9IjQwLjE5OTgiIHI9IjUuNCIgZmlsbD0iIzQ0NDE0MSIvPgo8cGF0aCBkPSJNMjcuMTk5NiA1MS45MDAyQzQuMDc4MyA0Mi4zMjQ3IDI4LjQxOTcgMjQuNzYzNCA0MC4zOTk2IDEwLjQwMDJDMTkuMDk5NiAyNy43MDAyIDcuMjk5NjEgNDAuOTAwMiAtMC44MDAzOTIgMjguMDAwMkwtNy40MDAzOSA1Ny4yMDAyTDI3LjE5OTYgNTEuOTAwMloiIGZpbGw9IiMzNjMyMzIiLz4KPHBhdGggZD0iTTUuMDk5MiAxNS42OTk5VjUuOTU2NzFINi44NzQxOVY3LjI2MTIySDYuOTA5ODNDNy4zNDQ2NyA2LjM1NTkgOC4xNzE1OCA1Ljc5OTg4IDkuMjU1MSA1Ljc5OTg4QzExLjE3MjcgNS43OTk4OCAxMi4zODQ1IDcuMjk2ODYgMTIuMzg0NSA5LjczNDhWOS43NDE5M0MxMi4zODQ1IDEyLjE2NTYgMTEuMTcyNyAxMy42NjI2IDkuMjc2NDkgMTMuNjYyNkM4LjIwMDA5IDEzLjY2MjYgNy4zMzc1NCAxMy4xMjA4IDYuOTA5ODMgMTIuMjM2OUg2Ljg3NDE5VjE0LjUxMDVMNi44NTk5NCAxNS42OTk5SDUuMDk5MlpNOC43Mjc2IDEyLjE2NTZDOS44NjEwMyAxMi4xNjU2IDEwLjU3MzkgMTEuMjMxOCAxMC41NzM5IDkuNzQxOTNWOS43MzQ4QzEwLjU3MzkgOC4yMjM1NiA5Ljg2MTAzIDcuMjk2ODYgOC43Mjc2IDcuMjk2ODZDNy42Mjk4MSA3LjI5Njg2IDYuODU5OTQgOC4yNTIwOCA2Ljg1OTk0IDkuNzM0OFY5Ljc0MTkzQzYuODU5OTQgMTEuMjE3NSA3LjYyOTgxIDEyLjE2NTYgOC43Mjc2IDEyLjE2NTZaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTYuMzM2IDEzLjY2MjZDMTQuMDY5MSAxMy42NjI2IDEyLjcwMDQgMTIuMTU4NSAxMi43MDA0IDkuNzU2MTlWOS43NDkwNkMxMi43MDA0IDcuMzY4MTUgMTQuMDkwNSA1Ljc5OTg4IDE2LjI1MDQgNS43OTk4OEMxOC40MTA0IDUuNzk5ODggMTkuNzUwNSA3LjMxODI1IDE5Ljc1MDUgOS41OTkzNlYxMC4xNjk2SDE0LjQ2MTJDMTQuNDg5NyAxMS40OTU1IDE1LjIxNjggMTIuMjc5NyAxNi4zNzE2IDEyLjI3OTdDMTcuMjU1NSAxMi4yNzk3IDE3LjgzMjkgMTEuODA5MiAxOC4wMDQgMTEuMzAzMUwxOC4wMTgzIDExLjI1MzJIMTkuNjc5MkwxOS42NTc4IDExLjMzMTZDMTkuNDIyNiAxMi40OTM1IDE4LjMxMDYgMTMuNjYyNiAxNi4zMzYgMTMuNjYyNlpNMTYuMjcxOCA3LjE4OTkzQzE1LjMzMDggNy4xODk5MyAxNC42MjUxIDcuODI0MzcgMTQuNDgyNiA4Ljk4NjMxSDE4LjAyNTRDMTcuODk3MSA3Ljc4ODczIDE3LjIxMjggNy4xODk5MyAxNi4yNzE4IDcuMTg5OTNaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMjAuMzg3MiAxMy41MTI5VjUuOTU2NzFIMjIuMTYyMlY3LjI2MTIySDIyLjE5NzlDMjIuNDMzMSA2LjM0ODc3IDIzLjA2MDQgNS43OTk4OCAyMy45MzAxIDUuNzk5ODhDMjQuMTUxMSA1Ljc5OTg4IDI0LjM1NzggNS44MzU1MiAyNC40OTMyIDUuODcxMTdWNy40NzUwN0MyNC4zNDM1IDcuNDE4MDUgMjQuMDcyNiA3LjM3NTI4IDIzLjc3MzMgNy4zNzUyOEMyMi43NjgxIDcuMzc1MjggMjIuMTYyMiA4LjAwOTcxIDIyLjE2MjIgOS4xMjg4OFYxMy41MTI5SDIwLjM4NzJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNy4zMzA0MSAyMy44NjA2QzUuODE5MTggMjMuODYwNiA0Ljc5OTggMjIuOTI2OCA0Ljc5OTggMjEuNTc5NVYyMS41NjUyQzQuNzk5OCAyMC4yMjUxIDUuODQwNTYgMTkuNDE5NiA3LjY3MjU4IDE5LjMwNTVMOS42NDcxNyAxOS4xODQzVjE4LjY2MzlDOS42NDcxNyAxNy45MDEyIDkuMTQ4MTggMTcuNDM3OCA4LjI0OTk5IDE3LjQzNzhDNy40MDg4MyAxNy40Mzc4IDYuODk1NTggMTcuODI5OSA2Ljc4MTUyIDE4LjM4NTlMNi43NjcyNyAxOC40NTAxSDUuMTIwNTlMNS4xMjc3MSAxOC4zNjQ1QzUuMjM0NjQgMTcuMDI0NCA2LjM5NjU4IDE2LjAxOTMgOC4zMTQxNSAxNi4wMTkzQzEwLjIwMzIgMTYuMDE5MyAxMS40MjIyIDE3LjAxNzMgMTEuNDIyMiAxOC41MzU2VjIzLjczMjNIOS42NDcxN1YyMi41NzAzSDkuNjA0NEM5LjE2OTU2IDIzLjM2MTYgOC4zMjg0IDIzLjg2MDYgNy4zMzA0MSAyMy44NjA2Wk02LjU2NzY3IDIxLjUwODJDNi41Njc2NyAyMi4xMjg0IDcuMDgwOTIgMjIuNTA2MiA3Ljg1NzkyIDIyLjUwNjJDOC44NzczIDIyLjUwNjIgOS42NDcxNyAyMS44MjkgOS42NDcxNyAyMC45MzA4VjIwLjM2MDVMNy45MjIwOCAyMC40Njc0QzcuMDQ1MjggMjAuNTI0NSA2LjU2NzY3IDIwLjkwMjMgNi41Njc2NyAyMS41MDExVjIxLjUwODJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTUuMjk1MiAyMy44ODJDMTMuMzEzNSAyMy44ODIgMTIuMTgwMSAyMi45NDEgMTIuMDIzMiAyMS41MzY3TDEyLjAxNjEgMjEuNDcyNkgxMy43NjI2TDEzLjc3NjggMjEuNTM2N0MxMy45MTIzIDIyLjE4NTQgMTQuNDA0MSAyMi41NzAzIDE1LjMwMjMgMjIuNTcwM0MxNi4xNjQ5IDIyLjU3MDMgMTYuNjg1MyAyMi4yMjExIDE2LjY4NTMgMjEuNjY1VjIxLjY1NzlDMTYuNjg1MyAyMS4yMDE3IDE2LjQyMTUgMjAuOTQ1MSAxNS42Mzc0IDIwLjc2NjhMMTQuMzgyOCAyMC40ODg4QzEyLjkzNTcgMjAuMTY4IDEyLjIwODYgMTkuNDYyMyAxMi4yMDg2IDE4LjM0MzJWMTguMzM2QzEyLjIwODYgMTYuOTUzMSAxMy40MTMzIDE2LjAxOTMgMTUuMjM4MiAxNi4wMTkzQzE3LjEyMDEgMTYuMDE5MyAxOC4yMTc5IDE3LjA1MjkgMTguMjgyIDE4LjM1NzRMMTguMjg5MiAxOC40MzU4SDE2LjYzNTRMMTYuNjI4MiAxOC4zNzg4QzE2LjU0OTggMTcuNzcyOSAxNi4wNjUxIDE3LjMzMDkgMTUuMjM4MiAxNy4zMzA5QzE0LjQ1NCAxNy4zMzA5IDEzLjk2MjIgMTcuNjk0NSAxMy45NjIyIDE4LjI1MDVWMTguMjU3NkMxMy45NjIyIDE4LjY5MjUgMTQuMjU0NCAxOC45Nzc2IDE1LjAzODYgMTkuMTU1OEwxNi4zMDAzIDE5LjQzMzhDMTcuODYxNSAxOS43ODMxIDE4LjQ2NzQgMjAuMzk2MiAxOC40Njc0IDIxLjQ5MzlWMjEuNTAxMUMxOC40Njc0IDIyLjkyNjggMTcuMTQ4NiAyMy44ODIgMTUuMjk1MiAyMy44ODJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTkuMDg5OCAyNi4yMjczVjE2LjE3NjFIMjAuODY0OFYxNy40ODA2SDIwLjkwMDVDMjEuMzM1MyAxNi41NzUzIDIyLjE2MjIgMTYuMDE5MyAyMy4yNDU3IDE2LjAxOTNDMjUuMTYzMyAxNi4wMTkzIDI2LjM3NTEgMTcuNTE2MyAyNi4zNzUxIDE5Ljk1NDJWMTkuOTYxM0MyNi4zNzUxIDIyLjM4NSAyNS4xNjMzIDIzLjg4MiAyMy4yNjcxIDIzLjg4MkMyMi4xOTA3IDIzLjg4MiAyMS4zMjgyIDIzLjM0MDIgMjAuOTAwNSAyMi40NTYzSDIwLjg2NDhWMjYuMjI3M0gxOS4wODk4Wk0yMi43MTgyIDIyLjM4NUMyMy44NTE3IDIyLjM4NSAyNC41NjQ1IDIxLjQ1MTIgMjQuNTY0NSAxOS45NjEzVjE5Ljk1NDJDMjQuNTY0NSAxOC40NDMgMjMuODUxNyAxNy41MTYzIDIyLjcxODIgMTcuNTE2M0MyMS42MjA0IDE3LjUxNjMgMjAuODUwNiAxOC40NzE1IDIwLjg1MDYgMTkuOTU0MlYxOS45NjEzQzIwLjg1MDYgMjEuNDM2OSAyMS42MjA0IDIyLjM4NSAyMi43MTgyIDIyLjM4NVoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0zMC4zMjY2IDIzLjg4MkMyOC4wNTk3IDIzLjg4MiAyNi42OTExIDIyLjM3NzkgMjYuNjkxMSAxOS45NzU2VjE5Ljk2ODRDMjYuNjkxMSAxNy41ODc1IDI4LjA4MTEgMTYuMDE5MyAzMC4yNDExIDE2LjAxOTNDMzIuNDAxIDE2LjAxOTMgMzMuNzQxMSAxNy41Mzc2IDMzLjc0MTEgMTkuODE4OFYyMC4zODlIMjguNDUxOEMyOC40ODAzIDIxLjcxNDkgMjkuMjA3NCAyMi40OTkxIDMwLjM2MjIgMjIuNDk5MUMzMS4yNDYyIDIyLjQ5OTEgMzEuODIzNiAyMi4wMjg2IDMxLjk5NDcgMjEuNTIyNUwzMi4wMDg5IDIxLjQ3MjZIMzMuNjY5OUwzMy42NDg1IDIxLjU1MUMzMy40MTMyIDIyLjcxMjkgMzIuMzAxMiAyMy44ODIgMzAuMzI2NiAyMy44ODJaTTMwLjI2MjQgMTcuNDA5M0MyOS4zMjE1IDE3LjQwOTMgMjguNjE1OCAxOC4wNDM4IDI4LjQ3MzIgMTkuMjA1N0gzMi4wMTYxQzMxLjg4NzcgMTguMDA4MSAzMS4yMDM0IDE3LjQwOTMgMzAuMjYyNCAxNy40MDkzWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTM0LjM3NzkgMjMuNzMyM1YxNi4xNzYxSDM2LjE1MjlWMTcuNDgwNkgzNi4xODg1QzM2LjQyMzcgMTYuNTY4MiAzNy4wNTEgMTYuMDE5MyAzNy45MjA3IDE2LjAxOTNDMzguMTQxNyAxNi4wMTkzIDM4LjM0ODQgMTYuMDU0OSAzOC40ODM5IDE2LjA5MDZWMTcuNjk0NUMzOC4zMzQyIDE3LjYzNzQgMzguMDYzMyAxNy41OTQ3IDM3Ljc2MzkgMTcuNTk0N0MzNi43NTg4IDE3LjU5NDcgMzYuMTUyOSAxOC4yMjkxIDM2LjE1MjkgMTkuMzQ4M1YyMy43MzIzSDM0LjM3NzlaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNDAuOTQ1NSAyMy44NjA2QzM5LjQzNDIgMjMuODYwNiAzOC40MTQ5IDIyLjkyNjggMzguNDE0OSAyMS41Nzk1VjIxLjU2NTJDMzguNDE0OSAyMC4yMjUxIDM5LjQ1NTYgMTkuNDE5NiA0MS4yODc2IDE5LjMwNTVMNDMuMjYyMiAxOS4xODQzVjE4LjY2MzlDNDMuMjYyMiAxNy45MDEyIDQyLjc2MzIgMTcuNDM3OCA0MS44NjUgMTcuNDM3OEM0MS4wMjM5IDE3LjQzNzggNDAuNTEwNiAxNy44Mjk5IDQwLjM5NjYgMTguMzg1OUw0MC4zODIzIDE4LjQ1MDFIMzguNzM1NkwzOC43NDI4IDE4LjM2NDVDMzguODQ5NyAxNy4wMjQ0IDQwLjAxMTYgMTYuMDE5MyA0MS45MjkyIDE2LjAxOTNDNDMuODE4MiAxNi4wMTkzIDQ1LjAzNzIgMTcuMDE3MyA0NS4wMzcyIDE4LjUzNTZWMjMuNzMyM0g0My4yNjIyVjIyLjU3MDNINDMuMjE5NUM0Mi43ODQ2IDIzLjM2MTYgNDEuOTQzNSAyMy44NjA2IDQwLjk0NTUgMjMuODYwNlpNNDAuMTgyNyAyMS41MDgyQzQwLjE4MjcgMjIuMTI4NCA0MC42OTYgMjIuNTA2MiA0MS40NzMgMjIuNTA2MkM0Mi40OTI0IDIyLjUwNjIgNDMuMjYyMiAyMS44MjkgNDMuMjYyMiAyMC45MzA4VjIwLjM2MDVMNDEuNTM3MSAyMC40Njc0QzQwLjY2MDMgMjAuNTI0NSA0MC4xODI3IDIwLjkwMjMgNDAuMTgyNyAyMS41MDExVjIxLjUwODJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMzMuMDMwNyAzMy45ODMxQzMxLjUxOTUgMzMuOTgzMSAzMC41MDAxIDMzLjA0OTIgMzAuNTAwMSAzMS43MDE5VjMxLjY4NzdDMzAuNTAwMSAzMC4zNDc1IDMxLjU0MDkgMjkuNTQyIDMzLjM3MjkgMjkuNDI3OUwzNS4zNDc1IDI5LjMwNjhWMjguNzg2NEMzNS4zNDc1IDI4LjAyMzYgMzQuODQ4NSAyNy41NjAzIDMzLjk1MDMgMjcuNTYwM0MzMy4xMDkxIDI3LjU2MDMgMzIuNTk1OSAyNy45NTI0IDMyLjQ4MTggMjguNTA4NEwzMi40Njc2IDI4LjU3MjVIMzAuODIwOUwzMC44MjggMjguNDg3QzMwLjkzNDkgMjcuMTQ2OCAzMi4wOTY5IDI2LjE0MTcgMzQuMDE0NCAyNi4xNDE3QzM1LjkwMzUgMjYuMTQxNyAzNy4xMjI1IDI3LjEzOTcgMzcuMTIyNSAyOC42NTgxVjMzLjg1NDdIMzUuMzQ3NVYzMi42OTI4SDM1LjMwNDdDMzQuODY5OSAzMy40ODQxIDM0LjAyODcgMzMuOTgzMSAzMy4wMzA3IDMzLjk4MzFaTTMyLjI2OCAzMS42MzA3QzMyLjI2OCAzMi4yNTA4IDMyLjc4MTIgMzIuNjI4NiAzMy41NTgyIDMyLjYyODZDMzQuNTc3NiAzMi42Mjg2IDM1LjM0NzUgMzEuOTUxNCAzNS4zNDc1IDMxLjA1MzJWMzAuNDgzTDMzLjYyMjQgMzAuNTg5OUMzMi43NDU2IDMwLjY0NjkgMzIuMjY4IDMxLjAyNDcgMzIuMjY4IDMxLjYyMzVWMzEuNjMwN1oiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik00MC44NTI5IDM0LjAwNDRDMzguOTQyNSAzNC4wMDQ0IDM3LjczMDcgMzIuNTA3NSAzNy43MzA3IDMwLjA3NjZWMzAuMDY5NUMzNy43MzA3IDI3LjYzMTYgMzguOTQ5NiAyNi4xNDE3IDQwLjg0NTggMjYuMTQxN0M0MS45MTUxIDI2LjE0MTcgNDIuNzc3NiAyNi42OTA2IDQzLjIwNTMgMjcuNTk1OUg0My4yNDgxVjI0LjIwMDNINDUuMDIzMVYzMy44NTQ3SDQzLjI0ODFWMzIuNTcxNkg0My4yMDUzQzQyLjc3NzYgMzMuNDYyNyA0MS45NDM2IDM0LjAwNDQgNDAuODUyOSAzNC4wMDQ0Wk00MS4zODc2IDMyLjUwNzVDNDIuNDg1NCAzMi41MDc1IDQzLjI0ODEgMzEuNTU5NCA0My4yNDgxIDMwLjA3NjZWMzAuMDY5NUM0My4yNDgxIDI4LjU5MzkgNDIuNDc4MiAyNy42Mzg3IDQxLjM4NzYgMjcuNjM4N0M0MC4yNTQyIDI3LjYzODcgMzkuNTQxMyAyOC41NjU0IDM5LjU0MTMgMzAuMDY5NVYzMC4wNzY2QzM5LjU0MTMgMzEuNTgwOCA0MC4yNDcgMzIuNTA3NSA0MS4zODc2IDMyLjUwNzVaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTguMjY3OSA0NC4yMDI0QzE2Ljc1NjcgNDQuMjAyNCAxNS43MzczIDQzLjI2ODYgMTUuNzM3MyA0MS45MjEzVjQxLjkwNzFDMTUuNzM3MyA0MC41NjY5IDE2Ljc3ODEgMzkuNzYxNCAxOC42MTAxIDM5LjY0NzNMMjAuNTg0NyAzOS41MjYyVjM5LjAwNThDMjAuNTg0NyAzOC4yNDMgMjAuMDg1NyAzNy43Nzk3IDE5LjE4NzUgMzcuNzc5N0MxOC4zNDYzIDM3Ljc3OTcgMTcuODMzMSAzOC4xNzE3IDE3LjcxOSAzOC43Mjc4TDE3LjcwNDggMzguNzkxOUgxNi4wNTgxTDE2LjA2NTIgMzguNzA2NEMxNi4xNzIxIDM3LjM2NjIgMTcuMzM0MSAzNi4zNjExIDE5LjI1MTYgMzYuMzYxMUMyMS4xNDA3IDM2LjM2MTEgMjIuMzU5NyAzNy4zNTkxIDIyLjM1OTcgMzguODc3NVY0NC4wNzQxSDIwLjU4NDdWNDIuOTEyMkgyMC41NDE5QzIwLjEwNzEgNDMuNzAzNCAxOS4yNjU5IDQ0LjIwMjQgMTguMjY3OSA0NC4yMDI0Wk0xNy41MDUyIDQxLjg1QzE3LjUwNTIgNDIuNDcwMiAxOC4wMTg0IDQyLjg0OCAxOC43OTU0IDQyLjg0OEMxOS44MTQ4IDQyLjg0OCAyMC41ODQ3IDQyLjE3MDggMjAuNTg0NyA0MS4yNzI2VjQwLjcwMjRMMTguODU5NiA0MC44MDkzQzE3Ljk4MjggNDAuODY2MyAxNy41MDUyIDQxLjI0NDEgMTcuNTA1MiA0MS44NDI5VjQxLjg1WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTI2LjIzMjcgNDQuMjIzOEMyNC4yNTEgNDQuMjIzOCAyMy4xMTc2IDQzLjI4MjkgMjIuOTYwNyA0MS44Nzg2TDIyLjk1MzYgNDEuODE0NEgyNC43MDAxTDI0LjcxNDMgNDEuODc4NkMyNC44NDk4IDQyLjUyNzIgMjUuMzQxNyA0Mi45MTIyIDI2LjIzOTggNDIuOTEyMkMyNy4xMDI0IDQyLjkxMjIgMjcuNjIyOCA0Mi41NjI5IDI3LjYyMjggNDIuMDA2OVY0MS45OTk3QzI3LjYyMjggNDEuNTQzNSAyNy4zNTkgNDEuMjg2OSAyNi41NzQ5IDQxLjEwODdMMjUuMzIwMyA0MC44MzA3QzIzLjg3MzIgNDAuNTA5OSAyMy4xNDYxIDM5LjgwNDIgMjMuMTQ2MSAzOC42ODVWMzguNjc3OUMyMy4xNDYxIDM3LjI5NDkgMjQuMzUwOCAzNi4zNjExIDI2LjE3NTcgMzYuMzYxMUMyOC4wNTc2IDM2LjM2MTEgMjkuMTU1NCAzNy4zOTQ3IDI5LjIxOTUgMzguNjk5M0wyOS4yMjY3IDM4Ljc3NzdIMjcuNTcyOUwyNy41NjU3IDM4LjcyMDZDMjcuNDg3MyAzOC4xMTQ3IDI3LjAwMjYgMzcuNjcyOCAyNi4xNzU3IDM3LjY3MjhDMjUuMzkxNiAzNy42NzI4IDI0Ljg5OTcgMzguMDM2MyAyNC44OTk3IDM4LjU5MjNWMzguNTk5NUMyNC44OTk3IDM5LjAzNDMgMjUuMTkyIDM5LjMxOTQgMjUuOTc2MSAzOS40OTc2TDI3LjIzNzggMzkuNzc1N0MyOC43OTkgNDAuMTI1IDI5LjQwNDkgNDAuNzM4IDI5LjQwNDkgNDEuODM1OFY0MS44NDI5QzI5LjQwNDkgNDMuMjY4NiAyOC4wODYxIDQ0LjIyMzggMjYuMjMyNyA0NC4yMjM4WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTMyLjgzNiA0NC4yMjM4QzMxLjI1MzQgNDQuMjIzOCAzMC41MDUgNDMuNTgyMyAzMC41MDUgNDIuMDI4M1YzNy44ODY2SDI5LjQzNTdWMzYuNTE3OUgzMC41MDVWMzUuMTAwM0gzMi4zMDg1VjM2LjUxNzlIMzMuNzEyOFYzNy44ODY2SDMyLjMwODVWNDEuODc4NkMzMi4zMDg1IDQyLjYxOTkgMzIuNjM2NCA0Mi44NTUyIDMzLjI4NTEgNDIuODU1MkMzMy40NTYxIDQyLjg1NTIgMzMuNTkxNiA0Mi44MzM4IDMzLjcxMjggNDIuODI2NlY0NC4xNTk3QzMzLjUwNiA0NC4xODgyIDMzLjE5MjQgNDQuMjIzOCAzMi44MzYgNDQuMjIzOFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0zNC40MjA4IDQ0LjA3NDFWMzYuNTE3OUgzNi4xOTU4VjM3LjgyMjRIMzYuMjMxNEMzNi40NjY2IDM2LjkxIDM3LjA5NCAzNi4zNjExIDM3Ljk2MzYgMzYuMzYxMUMzOC4xODQ2IDM2LjM2MTEgMzguMzkxMyAzNi4zOTY4IDM4LjUyNjggMzYuNDMyNFYzOC4wMzYzQzM4LjM3NzEgMzcuOTc5MyAzOC4xMDYyIDM3LjkzNjUgMzcuODA2OCAzNy45MzY1QzM2LjgwMTcgMzcuOTM2NSAzNi4xOTU4IDM4LjU3MDkgMzYuMTk1OCAzOS42OTAxVjQ0LjA3NDFIMzQuNDIwOFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik00MC45ODg0IDQ0LjIwMjRDMzkuNDc3MSA0NC4yMDI0IDM4LjQ1NzggNDMuMjY4NiAzOC40NTc4IDQxLjkyMTNWNDEuOTA3MUMzOC40NTc4IDQwLjU2NjkgMzkuNDk4NSAzOS43NjE0IDQxLjMzMDYgMzkuNjQ3M0w0My4zMDUxIDM5LjUyNjJWMzkuMDA1OEM0My4zMDUxIDM4LjI0MyA0Mi44MDYxIDM3Ljc3OTcgNDEuOTA4IDM3Ljc3OTdDNDEuMDY2OCAzNy43Nzk3IDQwLjU1MzUgMzguMTcxNyA0MC40Mzk1IDM4LjcyNzhMNDAuNDI1MiAzOC43OTE5SDM4Ljc3ODZMMzguNzg1NyAzOC43MDY0QzM4Ljg5MjYgMzcuMzY2MiA0MC4wNTQ2IDM2LjM2MTEgNDEuOTcyMSAzNi4zNjExQzQzLjg2MTIgMzYuMzYxMSA0NS4wODAxIDM3LjM1OTEgNDUuMDgwMSAzOC44Nzc1VjQ0LjA3NDFINDMuMzA1MVY0Mi45MTIySDQzLjI2MjRDNDIuODI3NSA0My43MDM0IDQxLjk4NjQgNDQuMjAyNCA0MC45ODg0IDQ0LjIwMjRaTTQwLjIyNTYgNDEuODVDNDAuMjI1NiA0Mi40NzAyIDQwLjczODkgNDIuODQ4IDQxLjUxNTkgNDIuODQ4QzQyLjUzNTMgNDIuODQ4IDQzLjMwNTEgNDIuMTcwOCA0My4zMDUxIDQxLjI3MjZWNDAuNzAyNEw0MS41ODAxIDQwLjgwOTNDNDAuNzAzMiA0MC44NjYzIDQwLjIyNTYgNDEuMjQ0MSA0MC4yMjU2IDQxLjg0MjlWNDEuODVaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNDIuNTg0IDExLjYwM0w0NC4yNTQ3IDcuNTkzMzhDNDQuNTcyNSA2LjgzMDczIDQ0LjczMTQgNi40NDk0IDQ0LjU0MTkgNi4yNTk5OUM0NC4zNTI1IDYuMDcwNTcgNDMuOTcxMiA2LjIyOTQ1IDQzLjIwODUgNi41NDcyM0wzOS4xOTg5IDguMjE3OUMzOC41MDkyIDguNTA1MjcgMzguMTY0NCA4LjY0ODk2IDM4LjE1NDYgOC45MDQ1QzM4LjE0NDggOS4xNjAwNCAzOC40Nzc2IDkuMzI5NzIgMzkuMTQzMyA5LjY2OTA4TDM5LjMwNCA5Ljc1MTA0QzM5Ljg3NzcgMTAuMDQzNSA0MC4xNjQ1IDEwLjE4OTcgNDAuMzg4NCAxMC40MTM2QzQwLjYxMjIgMTAuNjM3NCA0MC43NTg0IDEwLjkyNDIgNDEuMDUwOSAxMS40OTc5TDQxLjEzMjggMTEuNjU4N0M0MS40NzIyIDEyLjMyNDMgNDEuNjQxOSAxMi42NTcxIDQxLjg5NzQgMTIuNjQ3M0M0Mi4xNTMgMTIuNjM3NSA0Mi4yOTY3IDEyLjI5MjcgNDIuNTg0IDExLjYwM1oiIGZpbGw9IndoaXRlIi8+CjwvZz4KPGRlZnM+CjxjbGlwUGF0aCBpZD0iY2xpcDBfNjI0N18xNDU3Ij4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiByeD0iNiIgZmlsbD0id2hpdGUiLz4KPC9jbGlwUGF0aD4KPC9kZWZzPgo8L3N2Zz4K" width="50" height="50" alt=""></a>
     <span class="header-caption">Школа<br>дизайна</span>
-    <span class="header-caption">STW-2026-01<br>1500+ студентов</span>
+    <span class="header-caption">1500+<br>студентов</span>
     <div class="header-actions">
       <nav class="header-nav" aria-label="Разделы главной">
         <a href="#courses">
@@ -1126,7 +1124,6 @@
       </div>
     </section>
     <section class="companies" aria-labelledby="companies-title">
-      <div class="pa-signal pa-signal-companies" aria-hidden="true"><span>Motion / лента</span><span>Модули — 12</span></div>
       <h2 class="companies-title" id="companies-title" data-text-reveal="body">
         <span class="reveal-row"><span>Студенты школы уже работают</span></span>
         <span class="reveal-row"><span>в корпорациях и на фрилансе</span></span>
@@ -1198,7 +1195,6 @@
     </section>
     <section class="pa-section pa-deck" id="courses" aria-labelledby="courses-title">
       <div class="pa-section-head">
-        <p class="pa-note">[ Направления ]</p>
         <h2 class="pa-display" id="courses-title" data-text-reveal="title"><span class="reveal-row"><span>Выбери направление</span></span></h2>
       </div>
       <div class="pa-deck-pages">
@@ -1206,24 +1202,24 @@
           <p class="pa-course-index pa-note">Флагман</p>
           <h3>Digital-<br>дизайнер</h3>
           <div class="pa-course-copy"><p>Сайты, UX/UI и 3D. Нейросети в каждой миссии.</p><a class="pa-action" href="https://perasperadastra.ru/school">Открыть курс <span aria-hidden="true">↗</span></a></div>
-          <figure><span class="pa-sheet-no" aria-hidden="true">(01)</span><img src="editorial/halo.webp" alt="Интерфейс HALO на экране монитора" width="740" height="600" loading="lazy"><figcaption><span>HALO · Никита Шаронов</span><span class="pa-signal pa-signal-source" aria-hidden="true"><span>IMG <b data-source-size>—</b></span></span></figcaption></figure>
+          <figure><img src="editorial/halo.webp" alt="Интерфейс HALO на экране монитора" width="740" height="600" loading="lazy"><figcaption><span>HALO · Никита Шаронов</span></figcaption></figure>
         </div></article>
         <article class="pa-deck-page"><div class="pa-course pa-course-motion">
           <p class="pa-course-index pa-note">Моушн-дизайн</p>
           <h3>Mission <br>to Motion</h3>
           <div class="pa-course-copy"><p>Ролик для бренда от концепции до монтажа, с AI-видео.</p><a class="pa-action" href="https://perasperadastra.ru/mission-to-motion">Открыть курс <span aria-hidden="true">↗</span></a></div>
-          <figure><span class="pa-sheet-no" aria-hidden="true">(02)</span><img src="editorial/clip-frame.webp" alt="Чёрно-белая сцена на мосту с красной кинетической типографикой" width="960" height="540" loading="lazy"><figcaption><span>Танцы на снегу · Студия школы</span><span class="pa-signal pa-signal-source" aria-hidden="true"><span>IMG <b data-source-size>—</b></span></span></figcaption></figure>
+          <figure><img src="editorial/clip-frame.webp" alt="Чёрно-белая сцена на мосту с красной кинетической типографикой" width="960" height="540" loading="lazy"><figcaption><span>Танцы на снегу · Студия школы</span></figcaption></figure>
         </div></article>
         <article class="pa-deck-page"><div class="pa-course pa-course-ai">
           <p class="pa-course-index pa-note">Нейросети</p>
           <h3>Mission <br>to AI</h3>
           <div class="pa-course-copy"><p>Генерация изображений и видео. Курс ведёт Саша Сучков.</p><a class="pa-action" href="https://perasperadastra.ru/mission-to-ai">Открыть курс <span aria-hidden="true">↗</span></a></div>
-          <figure><span class="pa-sheet-no" aria-hidden="true">(03)</span><img src="editorial/boreal.webp" alt="Кадр из нейросъёмки Boréal в холодных голубых тонах" width="1233" height="1000" loading="lazy"><figcaption><span>Boréal · Мария Тетерина</span><span class="pa-signal pa-signal-source" aria-hidden="true"><span>IMG <b data-source-size>—</b></span></span></figcaption></figure>
+          <figure><img src="editorial/boreal.webp" alt="Кадр из нейросъёмки Boréal в холодных голубых тонах" width="1233" height="1000" loading="lazy"><figcaption><span>Boréal · Мария Тетерина</span></figcaption></figure>
         </div></article>
       </div>
     </section>
     <section class="pa-section pa-free" id="free" aria-labelledby="free-title">
-      <header class="pa-folio"><p>Бесплатная база дизайна</p><div class="pa-signal " aria-hidden="true"><span>Тип / текст + изображение</span><span>Ссылки — 05</span></div></header>
+      <header class="pa-folio"><p>Бесплатная база дизайна</p></header>
       <h2 class="pa-sentence" id="free-title">
         <span>Начни с <a href="https://perasperadastra.ru/free-course"><img src="editorial/lesson-pen.webp" alt="" loading="lazy">веб-дизайна</a>.</span>
         <span>Найди свой <a href="https://fonts.perasperadastra.ru/"><img src="editorial/fonts-library.webp" alt="" loading="lazy">шрифт</a> и <a href="https://perasperadastra.ru/style-guide"><img src="editorial/styles-catalog.webp" alt="" loading="lazy">стиль</a>.</span>
@@ -1232,22 +1228,19 @@
     </section>
     <section class="pa-section pa-work" id="student-work" aria-labelledby="work-title">
       <div class="pa-showcase"><div class="pa-showcase-pin">
-        <div class="pa-folio"><p>Perasperadastra / Портфолио</p><div class="pa-signal pa-signal-scene" aria-hidden="true"><span>Архив работ</span><span>Просмотр — <b data-readout="showcase">000%</b></span></div></div>
+        <div class="pa-folio"><p>Портфолио</p></div>
         <div class="pa-montage" aria-hidden="true"><img src="editorial/halo.webp" alt="" loading="lazy" decoding="async">
             <img src="editorial/boreal.webp" alt="" loading="lazy" decoding="async">
             <img src="editorial/lumos.webp" alt="" loading="lazy" decoding="async">
             <img src="editorial/odin.webp" alt="" loading="lazy" decoding="async">
             <img src="editorial/snow.webp" alt="" loading="lazy" decoding="async">
-            <img src="editorial/clip-frame.webp" alt="" loading="lazy" decoding="async">
-            <img src="editorial/halo2.webp" alt="" loading="lazy" decoding="async">
-            <img src="editorial/lumos0.webp" alt="" loading="lazy" decoding="async">
-            <img src="editorial/boreal2.webp" alt="" loading="lazy" decoding="async"></div>
+            <img src="editorial/clip-frame.webp" alt="" loading="lazy" decoding="async"></div>
         <h2 class="pa-display" id="work-title"><span class="reveal-row"><span>Лучшие работы</span></span> <span class="reveal-row"><span>выпускников</span></span></h2>
       </div></div>
       <div class="pa-work-edition">
-        <header class="pa-folio"><p>Шоурил / 01:00</p><div class="pa-outlets"><a href="https://dprofile.ru/perasperadastra">Dprofile ↗</a><a href="https://www.behance.net/perasperadastra">Behance ↗</a></div></header>
+        <header class="pa-folio"><p>Проекты школы</p><div class="pa-outlets"><a href="https://dprofile.ru/perasperadastra">Dprofile ↗</a><a href="https://www.behance.net/perasperadastra">Behance ↗</a></div></header>
         <div class="pa-work-grid">
-          <figure class="pa-reel"><video src="editorial/portfolio-reel.webm" poster="editorial/boreal.webp" controls playsinline muted preload="none" aria-label="Видеоподборка проектов школы"></video><figcaption><strong>Шоурил работ</strong><span>Perasperadastra</span></figcaption></figure>
+          <figure class="pa-reel"><img src="editorial/boreal2.webp" alt="Кадр из серии Boréal" loading="lazy"><figcaption><strong>Boréal</strong><span>Мария Тетерина</span></figcaption></figure>
           <div class="pa-case-index"><a class="pa-case pa-case-lumos" href="https://dprofile.ru/case/174106/lumos"><img src="editorial/lumos.webp" alt="LUMOS, силуэт в оранжевом свете" loading="lazy" width="1233" height="1000"><div><strong>LUMOS ↗</strong><span>AI-концепт · Мария Тетерина</span></div></a>
             <a class="pa-case pa-case-snow" href="https://dprofile.ru/case/197117/tancy-na-snegu-koncept-klipa-bez-kamery-i-akterov"><img src="editorial/snow.webp" alt="Обложка концепта клипа «Танцы на снегу»" loading="lazy" width="740" height="600"><div><strong>Танцы на снегу ↗</strong><span>Motion и AI · Студия школы</span></div></a>
             <a class="pa-case pa-case-odin" href="https://dprofile.ru/case/198180/longrid-ob-odine-i-istinnoi-cene-mudrosti"><img src="editorial/odin.webp" alt="Графика лонгрида об Одине" loading="lazy" width="740" height="600"><div><strong>Лонгрид об Одине ↗</strong><span>Графика · Надежда Соломонова</span></div></a>
@@ -1279,7 +1272,6 @@
     </section>
     <section class="student-stories" id="stories" aria-labelledby="stories-title">
       <div class="stories-stage">
-        <div class="pa-signal pa-signal-stories" aria-hidden="true"><span>Архив / истории</span><span>Карточки — 04</span></div>
         <h2 id="stories-title" class="stories-title">Куда приводит обучение</h2>
         <div class="stories-track">
           <article class="story-pair" aria-labelledby="story-kononov">
@@ -1359,7 +1351,7 @@
     </section>
     <section id="about" class="pa-section pa-about" aria-labelledby="about-heading">
       <header class="pa-about-intro">
-        <div class="pa-folio"><p>Perasperadastra / Школа дизайна</p><div class="pa-signal " aria-hidden="true"><span>Слой / ASCII</span><span>Формат — моноширинный</span></div></div>
+        <div class="pa-folio"><p>Школа дизайна</p></div>
         <div class="pa-orbit-console" aria-hidden="true"><pre>
 
 
@@ -1393,7 +1385,7 @@
 </pre></div>
         <h2 class="pa-display" id="about-heading" data-text-reveal="title"><span class="reveal-row"><span>Учишься</span></span> <span class="reveal-row"><span>не один</span></span></h2>
       </header>
-      <div class="pa-about-grid"><div class="pa-about-key"><strong aria-hidden="true">06</strong><p class="pa-note">Как устроено<br>обучение</p></div>
+      <div class="pa-about-grid">
         <div class="pa-about-list">
           <details name="study-format" open><summary>Уроки в записи</summary><p>Останови урок на нужном шаге, повтори приём в своём макете и вернись к записи, когда будешь дорабатывать детали.</p></details>
           <details name="study-format"><summary>Живые разборы и вебинары</summary><p>Приноси черновик на разбор. Вместе посмотрим, где теряется иерархия, что стоит упростить и какую версию попробовать следующей.</p></details>
@@ -1406,7 +1398,7 @@
     </section>
     <section class="pa-section pa-syllabus" id="program" aria-labelledby="program-heading">
       <div class="pa-program-scene"><div class="pa-program-cover">
-        <div class="pa-folio"><p>Программа обучения</p><div class="pa-signal pa-signal-scene" aria-hidden="true"><span>Сетка — 12 колонок</span><span>Развёртка — <b data-readout="program">000%</b></span></div></div>
+        <div class="pa-folio"><p>Программа обучения</p></div>
         <div class="pa-columns" aria-hidden="true"><i style="--height:42%"></i><i style="--height:67%"></i><i style="--height:88%"></i><i style="--height:98%"></i><i style="--height:72%"></i><i style="--height:51%"></i><i style="--height:51%"></i><i style="--height:72%"></i><i style="--height:98%"></i><i style="--height:88%"></i><i style="--height:67%"></i><i style="--height:42%"></i></div>
         <h2 class="pa-display" id="program-heading"><span class="reveal-row"><span>Чему научишься</span></span> <span class="reveal-row"><span>и что будет</span></span> <span class="reveal-row"><span>в портфолио</span></span></h2>
       </div></div>
@@ -1442,12 +1434,11 @@
     <section class="pa-section pa-awards" id="awards" aria-labelledby="awards-heading">
       <div class="pa-awards-poster">
         <img class="pa-awards-photo" src="editorial/award-2025.webp" alt="" width="533" height="800" loading="lazy">
-        <div class="pa-awards-caption"><div class="pa-signal pa-signal-awards" aria-hidden="true"><span>Dprofile Fest &amp; Award</span><span>Архив — 2024 / 2025</span></div>
+        <div class="pa-awards-caption">
           <h2 class="pa-display" id="awards-heading" data-text-reveal="title"><span class="reveal-row"><span>Работы студентов</span></span> <span class="reveal-row"><span>замечают</span></span></h2>
         </div>
         <div class="pa-awards-figures">
           <div><span class="pa-note">Школа, студия и студенты</span><strong>100+</strong><span class="pa-note">наград</span></div>
-          <div><span class="pa-note">Dprofile Award · 2024—25</span><strong>02</strong><span class="pa-note">фотоотчёта</span></div>
         </div>
       </div>
       <div class="pa-awards-archive"><div class="pa-award-links">
@@ -1457,7 +1448,7 @@
         <a href="https://contest.festivalsreda.ru/works/selfpromo/11648/"><strong>Среда</strong><span>Дизайн-батл ↗</span></a>
       </div>
 <div class="pa-ceremony">
-        <h3>С церемоний<br>Dprofile Award</h3>
+        <h3>С церемоний Dprofile Award</h3>
         <figure><img src="editorial/award-object.webp" alt="Награда Dprofile Award крупным планом" width="600" height="800" loading="lazy"><figcaption>Приз фестиваля · 2024</figcaption></figure>
         <a href="https://t.me/perasperagram/887"><img src="editorial/award-2024.webp" alt="Участники с наградой перед сценой фестиваля 2024 года" width="600" height="800" loading="lazy"><span>«Победа» и Yarn Paw · 2024 ↗</span></a>
         <a href="https://t.me/perasperagram/1452"><img src="editorial/award-2025.webp" alt="Команда на церемонии Dprofile Fest & Award 2025" width="533" height="800" loading="lazy"><span>Две награды за Tommy · 2025 ↗</span></a>
@@ -1475,7 +1466,6 @@
           <div data-kind="lecture" class="pa-lecture-art" hidden><strong>65</strong><span>минут о дизайне</span></div>
         </div>
         <div class="pa-viewer-caption">
-          <div class="pa-signal " aria-hidden="true"><span>Редакция / кадр</span><span>Материал — <b data-issue>02 / 04</b></span></div>
           <a class="pa-current-post" href="https://perasperadastra.ru/klip">Как снять клип без камеры и актёров ↗</a>
         </div>
         <div class="pa-media-list"><a data-kind="battle" href="https://t.me/perasperagram/2123"><span>Батл</span><strong>Один бриф, два плаката ко Дню агронома</strong><i>↗</i></a>
@@ -1488,7 +1478,6 @@
       <form class="application-form" action="mailto:design@perasperadastra.ru" method="post" enctype="text/plain" aria-labelledby="application-title">
         <div class="application-heading">
           <h2 id="application-title" data-text-reveal="title"><span class="reveal-row"><span>Оставь заявку,</span></span> <span class="reveal-row"><span>подберем курс</span></span> <span class="reveal-row"><span>и тариф</span></span></h2>
-          <div class="pa-signal pa-signal-form" aria-hidden="true"><span>Fill <i class="pa-color-chip"></i> #FF7122</span><span>RGB 255 · 113 · 34</span><span>Канал — e-mail</span></div>
           <svg class="application-arrow" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
             <path d="M8 8 91 91 M22 91H91V22" fill="none" stroke="currentColor" stroke-width="14"/>
           </svg>
@@ -1507,7 +1496,6 @@
     </section>
   </main>
 <section id="school-footer" aria-labelledby="pa-footer-title">
-  <div class="pa-signal pa-signal-footer" aria-hidden="true"><span>Perasperadastra / Орбита</span></div>
   <div class="mtb-wrap">
     <div class="mtb-cta">
       <h2 class="mtb-title" id="pa-footer-title" data-text-reveal="title">

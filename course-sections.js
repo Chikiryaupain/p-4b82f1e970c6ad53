@@ -58,13 +58,11 @@
   const preview = document.querySelector('.pa-news-preview');
   const previewItems = [...preview.children];
   const currentPost = document.querySelector('.pa-current-post');
-  const issue = document.querySelector('[data-issue]');
   function previewPost(post) {
     if (!post) return;
     previewItems.forEach(item => { item.hidden = item.dataset.kind !== post.dataset.kind; });
     currentPost.href = post.href;
     currentPost.textContent = post.querySelector('strong').textContent + ' ↗';
-    issue.textContent = String(posts.indexOf(post) + 1).padStart(2,'0') + ' / ' + String(posts.length).padStart(2,'0');
   }
   posts.forEach(post => {
     post.addEventListener('pointerenter', () => previewPost(post));
@@ -77,27 +75,6 @@
   const showcase = document.querySelector('.pa-showcase');
   const covers = [...showcase.querySelector('.pa-montage').children];
   const program = document.querySelector('.pa-program-scene');
-  const showcaseMeter = showcase.querySelector('[data-readout]');
-  const programMeter = program.querySelector('[data-readout]');
-  const viewport = document.querySelector('[data-viewport]');
-  function measureFrame() {
-    viewport.textContent = document.documentElement.clientWidth + ' × ' + window.innerHeight;
-  }
-  function showPercent(element, progress) {
-    const value = String(Math.round(progress * 100)).padStart(3, '0') + '%';
-    if (element.textContent !== value) element.textContent = value;
-  }
-  window.addEventListener('resize', measureFrame);
-  measureFrame();
-  sheets.forEach(sheet => {
-    const cover = sheet.querySelector('figure img');
-    const label = sheet.querySelector('[data-source-size]');
-    function showSourceSize() {
-      label.textContent = cover.naturalWidth + ' × ' + cover.naturalHeight;
-    }
-    if (cover.naturalWidth) showSourceSize();
-    else cover.addEventListener('load', showSourceSize, {once:true});
-  });
   const columns = [...program.querySelector('.pa-columns').children];
   const events = [...document.querySelector('.pa-events').children];
   const canStack = matchMedia('(min-width:761px) and (min-height:580px)');
@@ -139,7 +116,6 @@
     const progress = sceneProgress(showcase.getBoundingClientRect(), pin.clientHeight);
     const centres = covers.map(img => [img.offsetLeft - pin.clientWidth / 2, img.offsetTop - pin.clientHeight / 2]);
     return () => {
-      showPercent(showcaseMeter, progress);
       const title = 1 - ramp(progress, .015, .22) + ramp(progress, .77, .98);
       prop(pin, '--title-alpha', title);
       prop(pin, '--title-y', (1 - title) * (progress < .5 ? -24 : 36), 'px');
@@ -159,7 +135,6 @@
   scenes.set(program, () => {
     const progress = sceneProgress(program.getBoundingClientRect(), program.firstElementChild.clientHeight);
     return () => {
-      showPercent(programMeter, progress);
       columns.forEach((col, i) => {
         const delay = Math.abs(i - (columns.length - 1) / 2) * .041;
         prop(col, '--fill', .025 + .975 * ramp(progress, delay, .64 + delay));
@@ -216,15 +191,4 @@
   reducedMotionPreference.addEventListener('change', setMotion);
   setMotion();
 
-  const reel = document.querySelector('.pa-reel video');
-  let started = false;
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) { reel.pause(); return; }
-      if (!started && !reducedMotionPreference.matches && entry.intersectionRatio >= .5) {
-        started = true;
-        reel.play().catch(() => { /* Native controls remain available. */ });
-      }
-    }, { threshold: [0, .5] }).observe(reel);
-  }
 })();
